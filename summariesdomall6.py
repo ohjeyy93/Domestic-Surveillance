@@ -79,6 +79,7 @@ for files in wholefiles:
                     #if tempcount==len(wholelist1)+1:
                         #print(item)
                         #print(tempdict1)
+                #print(tempdict1)
                 wholelist1+=[tempdict1]
                 item=tempdict1
                 #print(item)
@@ -253,7 +254,12 @@ for files in wholefiles:
 #print(wholegenilist1)
 wholecount=0
 #print(wholegenilist1)
-wholecombinedlist1=wholelist1
+#wholecombinedlist1=wholelist1
+wholecombinedlist1=[]
+for item in wholelist1:
+    if item not in wholecombinedlist1:
+        wholecombinedlist1+=[item]
+
 for item in wholegenilist1:
     if item not in wholelist1:
         wholecombinedlist1+=[item]
