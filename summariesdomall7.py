@@ -376,16 +376,17 @@ for item in wholecombinedlist1:
         dict3[item]=dict3[item]+","+"NA"
 
     if item not in dict1 and item in wholegenilist1:
-        print(item)
-        dict1[item]=item+"NA"+wholetypelist1[item]
-        dict4[item]=item+"NA"+wholebplist1[item]
-        dict2[item]=item+"NA"+wholecovlist1[item]
-        dict3[item]=item+"NA"+wholevaflist1[item]
+        #print(item)
+        dict1[item]=item+",NA"+","+wholetypelist1[item]
+        dict4[item]=item+",NA"+","+wholebplist1[item]
+        dict2[item]=item+",NA"+","+wholecovlist1[item]
+        dict3[item]=item+",NA"+","+wholevaflist1[item]
+        #print(dict1[item])
     #wholecount+=1
 
 
 #print(dict1)
-with open("testdomsamfix1.csv", 'w') as t1:
+with open("testdomsamfix2.csv", 'w') as t1:
     t1.write("Sample,Gene,SNP,NFNeST,Geneious"+"\n")
     for item in dict1:
         #print(item)
@@ -395,6 +396,9 @@ with open("testdomsamfix1.csv", 'w') as t1:
         #print(item[item.find(",")+1::].find(","))
         #print(item[item.find(",")+1:item.find(",")+item[item.find(",")+1::].find(",")])
         #print(item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::])
+        #if item in wholetypelist1:
+        #    if dict1[item]==item+",NA"+","+wholetypelist1[item]:
+        #        print("true")
         t1.write(dict1[item]+"\n")
         t1.write(item[0:item.find(",")]+",basepos,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+dict4[item]+"\n")
         t1.write(item[0:item.find(",")]+",coverage,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+dict2[item]+"\n")
