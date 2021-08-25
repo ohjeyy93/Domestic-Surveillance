@@ -76,7 +76,7 @@ for files in wholefiles:
             #    print(lines)
             #    print(tempbasepos1)
             #    print(tempcov)
-            if tempdict1!="":
+            if tempdict1!="" and tempcov!="NA":
                 #if wholelist1==[] and tempdict1!="":
                 #    wholelist1+=[tempdict1]
                 #if tempdict1!="":
@@ -478,14 +478,14 @@ with open("testdomsamfixbp12.csv", 'w') as t1:
         if len(list(dict1[item].split(",")))>5:
             #print(dict1[item][0:-len(list(dict1[item].split(",")[-1]))-1])
             t1.write(dict1[item][0:-len(list(dict1[item].split(",")[-1]))-1]+"\n")
-            t1.write(item[0:item.find(",")]+",basepos,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+list(dict4[item].split(","))[0]+","+list(dict4[item].split(","))[1]+"\n")
-            t1.write(item[0:item.find(",")]+",coverage,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+list(dict2[item].split(","))[0]+","+list(dict2[item].split(","))[1]+"\n")
-            t1.write(item[0:item.find(",")]+",Variant frequency,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+list(dict3[item].split(","))[0]+","+list(dict3[item].split(","))[1]+"\n")
+            t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+list(dict4[item].split(","))[1]+"\n")
+            t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+list(dict2[item].split(","))[1]+"\n")
+            t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+list(dict3[item].split(","))[1]+"\n")
         else:
             t1.write(dict1[item]+"\n")
-            t1.write(item[0:item.find(",")]+",basepos,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+dict4[item]+"\n")
-            t1.write(item[0:item.find(",")]+",coverage,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+dict2[item]+"\n")
-            t1.write(item[0:item.find(",")]+",Variant frequency,"+item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::]+","+dict3[item]+"\n")
+            t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+dict4[item]+"\n")
+            t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+dict2[item]+"\n")
+            t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+dict3[item]+"\n")
 
 #reader = csv.reader(open("testdomsamfix4.csv"), delimiter=";")
 #sortedlist = sorted(reader, key=operator.itemgetter(3), reverse=True)
