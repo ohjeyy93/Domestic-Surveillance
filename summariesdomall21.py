@@ -269,6 +269,7 @@ for files in wholefiles:
                 templist3=""
                 tempseq1=""
                 VF=""
+                VRF=""
                 cov=""
                 basepos1=""
                 tempAA1=""
@@ -339,6 +340,12 @@ for files in wholefiles:
                                 cov=word
                             if count==65:
                                 VF=word
+                            if count==67 and word!="":
+                                if "->" not in word:
+                                    VRF=int(word)
+                                else:
+                                    VRF=word
+                                #rint(VRF)
                             count+=1
                 #if "20xxTXxxx0021PfB1290_S20_L001" in lines:
                 #        print(templist)
@@ -349,56 +356,46 @@ for files in wholefiles:
                 #print(len(templist.split(",")))
                 #if "19xxFLxxx0071PfB1230_S20_L001" in templist and "PfMDR1" in templist:
                 #    print(templist)
-                if templist in wholegenilist1:
-                    wholegenilistcut1+=[templist[0:-1]+"#"]
-                    wholetypelist1[templist[0:-1]+"#"]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                    wholegenilist1+=[templist+"#"]
-                    wholecovlist1[templist[0:-1]+"#"]=cov
-                    wholevaflist1[templist[0:-1]+"#"]=VF
-                    wholebplist1[templist[0:-1]+"#"]=basepos1
-                    wholetypelist1f[templist+"#"]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                    wholecovlist1f[templist+"#"]=cov
-                    wholevaflist1f[templist+"#"]=VF
-                    wholebplist1f[templist+"#"]=basepos1
-                #if templist in wholegenilist1
-                if templist[0:-1] in wholetypelist1:
-                    wholegenilistcut1+=[templist[0:-1]]
-                    wholetypelist1[templist[0:-1]]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                    wholegenilist1+=[templist]
-                    wholecovlist1[templist[0:-1]]=cov
-                    wholevaflist1[templist[0:-1]]=VF
-                    wholebplist1[templist[0:-1]]=basepos1
-                    wholetypelist1f[templist]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                    wholecovlist1f[templist]=cov
-                    wholevaflist1f[templist]=VF
-                    wholebplist1f[templist]=basepos1
-                if tempword!="" and len(templist.split(","))>2 and templist not in wholegenilist1:
-                    #print(templist)
-                    #print(templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::])
-                    if tempword[0:2]=="MN" and tempword[-2::]=="IE":
-                        wholegenilist1+=[templist]
-                        wholegenilist1+=[templist2]
-                        wholegenilistcut1+=[templist[0:-1]]
-                        wholegenilistcut1+=[templist2[0:-1]]
-                        wholetypelist1[templist[0:-1]]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                        wholecovlist1[templist[0:-1]]=cov
-                        wholevaflist1[templist[0:-1]]=VF
-                        wholebplist1[templist[0:-1]]=basepos1
-                        wholetypelist1f[templist]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                        wholecovlist1f[templist]=cov
-                        wholevaflist1f[templist]=VF
-                        wholebplist1f[templist]=basepos1
-                    else:
-                        wholegenilistcut1+=[templist[0:-1]]
-                        wholetypelist1[templist[0:-1]]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                        wholegenilist1+=[templist]
-                        wholecovlist1[templist[0:-1]]=cov
-                        wholevaflist1[templist[0:-1]]=VF
-                        wholebplist1[templist[0:-1]]=basepos1
-                        wholetypelist1f[templist]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
-                        wholecovlist1f[templist]=cov
-                        wholevaflist1f[templist]=VF
-                        wholebplist1f[templist]=basepos1
+                if VRF!="" and int(str(VRF)[0])>1:
+                    if templist in wholegenilist1 and VRF>1:
+                        wholegenilistcut1+=[templist[0:-1]+"#"]
+                        wholetypelist1[templist[0:-1]+"#"]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
+                        wholegenilist1+=[templist+"#"]
+                        wholecovlist1[templist[0:-1]+"#"]=cov
+                        wholevaflist1[templist[0:-1]+"#"]=VF
+                        wholebplist1[templist[0:-1]+"#"]=basepos1
+                        wholetypelist1f[templist+"#"]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
+                        wholecovlist1f[templist+"#"]=cov
+                        wholevaflist1f[templist+"#"]=VF
+                        wholebplist1f[templist+"#"]=basepos1
+                    #if templist in wholegenilist1
+                    if tempword!="" and len(templist.split(","))>2 and templist not in wholegenilist1:
+                        #print(templist)
+                        #print(templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::])
+                        if tempword[0:2]=="MN" and tempword[-2::]=="IE":
+                            wholegenilist1+=[templist]
+                            wholegenilist1+=[templist2]
+                            wholegenilistcut1+=[templist[0:-1]]
+                            wholegenilistcut1+=[templist2[0:-1]]
+                            wholetypelist1[templist[0:-1]]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
+                            wholecovlist1[templist[0:-1]]=cov
+                            wholevaflist1[templist[0:-1]]=VF
+                            wholebplist1[templist[0:-1]]=basepos1
+                            wholetypelist1f[templist]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
+                            wholecovlist1f[templist]=cov
+                            wholevaflist1f[templist]=VF
+                            wholebplist1f[templist]=basepos1
+                        else:
+                            wholegenilistcut1+=[templist[0:-1]]
+                            wholetypelist1[templist[0:-1]]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
+                            wholegenilist1+=[templist]
+                            wholecovlist1[templist[0:-1]]=cov
+                            wholevaflist1[templist[0:-1]]=VF
+                            wholebplist1[templist[0:-1]]=basepos1
+                            wholetypelist1f[templist]=templist[templist.find(",")+1+templist[templist.find(",")+1::].find(",")+1::]
+                            wholecovlist1f[templist]=cov
+                            wholevaflist1f[templist]=VF
+                            wholebplist1f[templist]=basepos1
 
 
 #print(dictvar)
@@ -422,6 +419,7 @@ for files in wholefiles:
                 basepos1=""
                 samplename=""
                 samplegene=""
+                #VRF=""
                 if lines.find("Coverage:")!=-1 and lines.find("Coverage - High")!=-1:
                     for word in lines.split(","):
                         if count==0:
@@ -626,7 +624,7 @@ for item in wholecombinedlist1:
 #        print(item)
 
 
-with open("testdomsamfixbp17.csv", 'w') as t1:
+with open("testdomsamfixbp18.csv", 'w') as t1:
     t1.write("Sample,Gene,SNP,NFNeST,Geneious"+"\n")
     for item in dict1:
         #print(item)
