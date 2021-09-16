@@ -237,6 +237,7 @@ for files in wholefiles:
                 ####################################
                 if item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::][0]==item[item.find(",")+1+item[item.find(",")+1::].find(",")+1::][-1]:
                     #print(agreement)
+                    #print(item)
                     dict1[item[0:-1]]=item+",WT"
                     dictall[item[0:-1]]="WT"
                     dict1f[item]=item+",WT"
@@ -291,6 +292,7 @@ for files in wholefiles:
                             #print(dict1[item[0:-1]])
                             #print(agreement)
                             #print(tempdict1)
+                    #print(dict1[item[0:-1]])
                     if tempvafdp1 == "NA":
                         dictvar[item[0:-1]]="NA"
                         dictall[item[0:-1]]="NA"
@@ -308,6 +310,8 @@ for files in wholefiles:
                 #if "SRR11867649" in item:
                 #    if "DHPS" in item:
                 #        print(dict1[item[0:-1]])
+                #if "WT" in dict1[item[0:-1]]:
+                #    print(dict1[item[0:-1]])        
                 dict4[item[0:-1]]=tempbasepos1
                 dict2[item[0:-1]]=tempcov
                 dict4f[item]=tempbasepos1
@@ -804,7 +808,14 @@ for item in wholecombinedlist1:
     #        print(item in dictall2)
     #        print(item in wholegenilist1)
     #        print(item[0:-1] in dictall)
-    #        print(item[0:-1] in wholegenilistcut1)        
+    #        print(item[0:-1] in wholegenilistcut1) 
+    #if item[0:-1] in dict1:
+    #    if "WT" in dict1[item[0:-1]]:
+    #        print(item in dictall2)
+    #        print(item in wholegenilist1)
+    #        print(item[0:-1] in dictall)
+    #        print(item[0:-1] in wholegenilistcut1)
+    #        print(dict1[item[0:-1]])       
                 
                 
     if "#" in item:
@@ -949,7 +960,11 @@ for item in wholecombinedlist1:
         if item[0:-1] in dictall and item[0:-1] not in wholegenilistcut1:
             #if "S533C" in item:
             #print(item in wholegenilist1)
-            dict1[item[0:-1]]=dict1[item[0:-1]]+","+"NA"
+            if list(dict1[item[0:-1]].split(","))[3]=="WT":
+                dict1[item[0:-1]]=dict1[item[0:-1]]+","+"NA"+","+"NA"+","+"NA"+","+"NA"
+            else:
+                dict1[item[0:-1]]=dict1[item[0:-1]]+","+"NA"
+            #print(dict1[item[0:-1]])
             dict4[item[0:-1]]=item+","+dict4[item[0:-1]]+","+"NA"+","+"NA"+","+"NA"+","+"NA"
             dict2[item[0:-1]]=item+","+dict2[item[0:-1]]+","+"NA"+","+"NA"+","+"NA"+","+"NA"
             dict3[item[0:-1]]=item+","+dict3[item[0:-1]]+","+"NA"+","+"NA"+","+"NA"+","+"NA"
