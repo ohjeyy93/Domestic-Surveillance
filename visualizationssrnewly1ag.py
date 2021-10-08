@@ -7,7 +7,7 @@ import re
 
 sns.set_theme(style="white", context="talk")
 
-df = pd.read_csv("testdomsamfixbp22ag.csv")
+df = pd.read_csv("testdomsamfixbp22ny.csv")
 wholemutationcount=[]
 wholewildtypecount=[]
 wholemutcombo=[]
@@ -63,7 +63,7 @@ for x in range(len(wholewildtypecount)):
 
 #print(len(dict1))
 # Generate some sequential data
-x = np.array(list("ABCDEFGHIJ"))
+x = np.array(list("ABCDEFGHIJKLM"))
 x1=[]
 y1=[]
 for items in dict1:
@@ -76,7 +76,7 @@ print(y1)
 my_cmap = plt.get_cmap("viridis")
 #rescale = lambda y: (y - np.min(y)) / (np.max(y) - np.min(y))*3
 print(len(x))
-NUM_COLORS=10
+NUM_COLORS=13
 cm = plt.get_cmap('gist_rainbow')
 axs1.bar(x,y1, width=0.3, color=[cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 axs1.xaxis.set_major_formatter(plt.NullFormatter())
@@ -101,7 +101,7 @@ for items in dict1:
 #print(wholelist1)
 #plt.scatter(x=[1,2,3,4,5,6,7,8,9],y=y2)
 #plt.scatter(x=[1],y=[(1,2,3,4,5)])
-XVals = np.array(list("ABCDEFGHIJ"))
+XVals = np.array(list("ABCDEFGHIJKLM"))
 YVals = wholelist1
 
 X = [XVals[i] for i, data in enumerate(YVals) for j in range(len(data))]
@@ -146,11 +146,12 @@ for y in range(3,len(df.loc[0])):
     tempsum=0
     for x in range(len(df)):
         if df.loc[x][1]!="basepos" and df.loc[x][1]!="coverage" and df.loc[x][1]!="Variant frequency":
-            if type(df.loc[x][y])==str and y!="WT":
+            if type(df.loc[x][y])==str and df.loc[x][y]!="WT":
                 if re.search('[a-zA-Z]', df.loc[x][y]):
+                    #print(y)
                     tempsum+=1
-        wholesum+=[tempsum]
-#print(wholesum)
+    wholesum+=[tempsum]
+print(wholesum)
 count=0
 maxnum=0
 for y in (wholesum):

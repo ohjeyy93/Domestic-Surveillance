@@ -4,7 +4,7 @@ import operator
 import csv
 
 wholefiles=[]
-for subdir, dirs, files in os.walk("Allreports11dom7ag"):
+for subdir, dirs, files in os.walk("Allreports11dom7ny2"):
     for file in files:
         if "Domestic1Reports" not in subdir and "DS_Store" not in file:
             wholefiles+=[os.path.join(subdir, file)]
@@ -51,12 +51,14 @@ for files in wholefiles:
                     if "Domestic1Reports" in files:
                         if word.find("_")!=-1 and "mitochondrial" not in word:
                             tempdict1=word[0:word.find("_")]
+                            #print(tempdict1)
                             #print(tempdic1)
                             #print(tempdict1)
                     if "Domestic1Reports" not in files:
                         #print(files)
                         #files.find("/")+1+files[files.find("/")+1::].find("/")
                         tempdict1=files[files.find("/")+1:files.find("/")+1+files[files.find("/")+1::].find("/")]
+                        #print(tempdict1)
                         #print(tempdict1)
                         #print(tempdict1)
                 if count==0 and "Domestic1Reports" not in files:
@@ -210,8 +212,10 @@ for files in wholefiles:
                 wholelist1+=[tempdict1]
                 whoelistcut1+=[tempdict1[0:-1]]
                 dictall[tempdict1[0:-1]]="test"
+                #print(tempdict1)
                 dictall2[tempdict1]="test"
                 item=tempdict1
+                #print(item)
                 #if "C469" in tempdict1:
                 #    print(item)
                 #print(item)
@@ -405,7 +409,7 @@ dictgenes2["K13",622]="R622I"
 dictgenes2["K13",675]="A675V"
 
 wholefiles=[]
-for subdir, dirs, files in os.walk("geneiousannotationdomall3"):
+for subdir, dirs, files in os.walk("NYgeneious1"):
     for file in files:
         wholefiles+=[os.path.join(subdir, file)]
 
@@ -430,7 +434,7 @@ for files in wholefiles:
         count=0
         countcom1=0
         countcom2=0
-        if files!="geneiousannotationdomall3/.DS_Store":
+        if files!="NYgeneious1/.DS_Store":
             for lines in f1:
                 count=0
                 current=""
@@ -455,8 +459,12 @@ for files in wholefiles:
                             if count==0:
                                 for word2 in word.split(" "):
                                     #print(word2[0:-6])
-                                    templist+=word2
+                                    if "SRR" in word2:
+                                        templist+=word2[0:-2]
+                                    else:
+                                        templist+=(word2[0:-6])
                                     break
+                                print(templist)
                             if count==1:
                                 #print(word)
                                 templist+=","
@@ -488,6 +496,7 @@ for files in wholefiles:
                                         #if "19xxTXxxxx0204PfB1280_S63_L001" in templist:
                                         #    print(templist)
                                         #print(len(list(templist.split(","))))
+                                        #print(templist)
                                     if len(list(templist.split(",")))<3 and int(word) in dictgenes1[templist[templist.find(",")+1::]] and tempAA1=="":
                                         #print("True")
                                         #print(dictgenes2[templist[templist.find(",")+1::],int(word)])
@@ -536,6 +545,7 @@ for files in wholefiles:
                 #if "SRR9260914,PfCRT,C72S" in templist:
                 #    print(templist)
                 #    print(VRF)
+                #print(templist)
                 if VRF!="": 
                     if (len(str(VRF))>1) or (len(str(VRF))==1 and int(str(VRF)[0])>1):
                         #print(VRF)
@@ -590,7 +600,7 @@ for files in wholefiles:
         count=0
         countcom1=0
         countcom2=0
-        if files!="geneiousannotationdomall3/.DS_Store":
+        if files!="NYgeneious1/.DS_Store":
             for lines in f1:
                 count=0
                 current=""
@@ -609,8 +619,15 @@ for files in wholefiles:
                             for word2 in word.split(" "):
                                 #print(word2[0:-6])
                                 #print(word2)
-                                templist+=word2
-                                samplename=word2
+                                #print(word2)
+                                if "SRR" in word2:
+                                    templist+=word2[0:-2]
+                                    samplename=word2[0:-2]
+                                else:
+                                    templist+=word2[0:-6]
+                                    samplename=word2[0:-6]
+                                #templist+=word2[0:-2]
+                                #samplename=word2[0:-2]
                                 #print(templist)
                                 break
                         if count==1:
@@ -830,6 +847,7 @@ for item in wholecombinedlist1:
         #dict3[item]=item[0:-1]+",NA"+","+wholevaflist1f[item]
     else:
         if item in dictall2 and item in wholegenilist1:
+            #print(item)
             #print("True")
             #if "SRR8951011" in item:
             #    if "S108N" in item:
@@ -1005,7 +1023,7 @@ for item in wholecombinedlist1:
 #        print(item)
 
 
-with open("testdomsamfixbp22ag.csv", 'w') as t1:
+with open("testdomsamfixbp22ny.csv", 'w') as t1:
     t1.write("Sample,Gene,SNP,NFNeST,Samtools,GATK,Freebayes,Geneious"+"\n")
     for item in dict1:
         #print(item)
@@ -1137,7 +1155,8 @@ with open("testdomsamfixbp22ag.csv", 'w') as t1:
                     #print(dict2[item])
                     #print(dict3[item])
                     #print(list(dict2[item].split(","))[0]) 
-                    #print(list(dict2[item].split(","))[4])  
+                    #print(list(dict2[item].split(","))[4]) 
+                    #print(dict3[item]) 
                     if len(list(dict1[item].split(",")))>8:
                         t1.write(dict1[item][0:-len(list(dict1[item].split(",")[-1]))-1]+"\n")
                     else: t1.write(dict1[item]+"\n")
@@ -1181,23 +1200,30 @@ with open("testdomsamfixbp22ag.csv", 'w') as t1:
                 #        print(dict4[item])
                 #        print(dict2[item])
                 #        print(dict3[item])
-                        
+                #print(dict1[item][0:-len(list(dict1[item].split(",")[-1]))-1])
+                #print(dict4[item])
+                #print(dict2[item])
                 if len(list(dict1[item].split(",")))>8:
+                    #print(dict4[item])
                     t1.write(dict1[item][0:-len(list(dict1[item].split(",")[-1]))-1]+"\n")
-                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[1]+"\n")
-                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[1]+"\n")
-                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[1]+"\n")
+                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[4]+"\n")
+                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[4]+"\n")
+                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[4]+"\n")
                 else:
+                    #print(dict1[item])
+                    #print(dict4[item])
+                    #print(dict2[item])
+                    #print(dict3[item])
                     t1.write(dict1[item]+"\n")
                     #print(dict4[item])
                     #print(dict2[item])
                     #print(dict3[item])
                     #if "19ANZa00F0031PfFxxx0_S67_L001" in item:
                     #    if "N75" in item:
-                    #        print(dict1[item])
-                    #        print(dict4[item])
-                    #        print(dict2[item])
-                    #        print(dict3[item])
+                    #print(dict1[item])
+                    #print(dict4[item])
+                    #print(dict2[item])
+                    #print(dict3[item])
                     t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+list(dict4[item].split(","))[1]+","+list(dict4[item].split(","))[2]+","+list(dict4[item].split(","))[3]+","+list(dict4[item].split(","))[4]+"\n")
                     t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+list(dict2[item].split(","))[1]+","+list(dict2[item].split(","))[2]+","+list(dict2[item].split(","))[3]+","+list(dict2[item].split(","))[4]+"\n")
                     t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+list(dict3[item].split(","))[1]+","+list(dict3[item].split(","))[2]+","+list(dict3[item].split(","))[3]+","+list(dict3[item].split(","))[4]+"\n")
@@ -1225,10 +1251,11 @@ with open("testdomsamfixbp22ag.csv", 'w') as t1:
                 if len(list(dict1[item].split(",")))<8:
                     continue
                 if len(list(dict1[item].split(",")))>=8:
+                    #print(dict4[item])
                     t1.write(dict1[item]+"\n")
-                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[7]+"\n")
-                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[7]+"\n")
-                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[7]+"\n")
+                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[4]+"\n")
+                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[4]+"\n")
+                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[4]+"\n")
                 #if "SRR8950840,DHPS,S436" in item:
                 #    print(item)
                 #    print(dict1[item])
@@ -1259,9 +1286,10 @@ with open("testdomsamfixbp22ag.csv", 'w') as t1:
                 #    print(dict3[item])
                 t1.write(dict1[item][0:-len(list(dict1[item].split(",")[-1]))-1]+"\n")
                 #print(item)
-                t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[7]+"\n")
-                t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[7]+"\n")
-                t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[7]+"\n")
+                #print(dict4[item])
+                t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[4]+"\n")
+                t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[4]+"\n")
+                t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[4]+"\n")
             if len(list(dict1[item].split(",")))<=8 and item not in dict751 and item not in dict752:
                 #if len(list(dict1[item].split(",")))==
                 #if "SRR8950949,DHPS,S436G" in item:
@@ -1273,18 +1301,22 @@ with open("testdomsamfixbp22ag.csv", 'w') as t1:
                 #    print(item)
                 t1.write(dict1[item]+"\n")
                 #print(dict4[item])
+                #print(dict1[item])
+                #print(dict4[item])
+                #print(dict2[item])
+                #print(dict3[item])
                 if len(list(dict4[item].split(",")))>5:
-                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[7]+"\n")
+                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[4]+"\n")
                 if len(list(dict2[item].split(",")))>5:
-                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[7]+"\n")
+                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[4]+"\n")
                 if len(list(dict3[item].split(",")))>5:
-                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[-1]+"\n")
+                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[4]+"\n")
                 if len(list(dict4[item].split(",")))==5:
-                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[7]+"\n")
+                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[4]+"\n")
                 if len(list(dict2[item].split(",")))==5:
-                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[7]+"\n")
+                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[4]+"\n")
                 if len(list(dict3[item].split(",")))==5:
-                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[7]+"\n")
+                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[4]+"\n")
         ####################################problem flag ##########################################
         if item[-1].isdigit()==False and len(list(dict1[item].split(",")))>=8:
             #if len(list(dict1[item].split(",")))<5:
