@@ -4,7 +4,7 @@ import operator
 import csv
 
 wholefiles=[]
-for subdir, dirs, files in os.walk("Allreports11dom7ny2"):
+for subdir, dirs, files in os.walk("Allreports11dom8ny"):
     for file in files:
         if "Domestic1Reports" not in subdir and "DS_Store" not in file:
             wholefiles+=[os.path.join(subdir, file)]
@@ -1027,10 +1027,10 @@ for item in wholecombinedlist1:
             dict4[item[0:-1]]=item+",NA"+","+"NA"+","+"NA"+","+"NA"+","+wholebplist1[item[0:-1]]
             dict2[item[0:-1]]=item+",NA"+","+"NA"+","+"NA"+","+"NA"+","+wholecovlist1[item[0:-1]]
             dict3[item[0:-1]]=item+",NA"+","+"NA"+","+"NA"+","+"NA"+","+wholevaflist1[item[0:-1]]
-            if "SRR11867610" in item:
-                if "Y184F" in item:
-                    print(dict1[item[0:-1]])
-                    print(dict4[item[0:-1]])
+            #if "SRR11867610" in item:
+            #    if "Y184F" in item:
+            #        print(dict1[item[0:-1]])
+            #        print(dict4[item[0:-1]])
         #print(dict1[item])
     #if "19xxFLxxx0071PfB1230_S20_L001" in item and item in dict1:
     #    print(dict1[item])
@@ -1055,7 +1055,7 @@ for item in wholecombinedlist1:
 #        print(item)
 
 
-with open("testdomsamfixbp22ny.csv", 'w') as t1:
+with open("testdomsamfixbp23ny.csv", 'w') as t1:
     t1.write("Sample,Gene,SNP,NFNeST,Samtools,GATK,Freebayes,Geneious"+"\n")
     for item in dict1:
         #print(item)

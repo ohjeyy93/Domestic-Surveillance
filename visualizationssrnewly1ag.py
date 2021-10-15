@@ -7,7 +7,7 @@ import re
 
 sns.set_theme(style="white", context="talk")
 
-df = pd.read_csv("testdomsamfixbp22ny.csv")
+df = pd.read_csv("testdomsamfixbp23ny.csv")
 wholemutationcount=[]
 wholewildtypecount=[]
 wholemutcombo=[]
@@ -63,7 +63,7 @@ for x in range(len(wholewildtypecount)):
 
 #print(len(dict1))
 # Generate some sequential data
-x = np.array(list("ABCDEFGHIJKLM"))
+x = np.array(list("ABCDEFGHIJKL"))
 x1=[]
 y1=[]
 for items in dict1:
@@ -76,7 +76,7 @@ print(y1)
 my_cmap = plt.get_cmap("viridis")
 #rescale = lambda y: (y - np.min(y)) / (np.max(y) - np.min(y))*3
 print(len(x))
-NUM_COLORS=13
+NUM_COLORS=12
 cm = plt.get_cmap('gist_rainbow')
 axs1.bar(x,y1, width=0.3, color=[cm(1.*i/NUM_COLORS) for i in range(NUM_COLORS)])
 axs1.xaxis.set_major_formatter(plt.NullFormatter())
@@ -101,7 +101,7 @@ for items in dict1:
 #print(wholelist1)
 #plt.scatter(x=[1,2,3,4,5,6,7,8,9],y=y2)
 #plt.scatter(x=[1],y=[(1,2,3,4,5)])
-XVals = np.array(list("ABCDEFGHIJKLM"))
+XVals = np.array(list("ABCDEFGHIJKL"))
 YVals = wholelist1
 
 X = [XVals[i] for i, data in enumerate(YVals) for j in range(len(data))]
