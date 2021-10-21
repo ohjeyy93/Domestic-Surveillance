@@ -1070,7 +1070,11 @@ with open("testdomsamfixbp23ny3.csv", 'w') as t1:
         #print(item)
         if item=="Dd2,PfMDR1,N86Y":
                 t1.write(item+dict1[item][:-5]+",N86F"+"\n")
-
+        #if "IDR2100043590-01_S27_L001" in item:
+        #    if "DHPS" in item:
+        #        if "S436" in item:
+        #            print(item in dict751)
+        #            print(item in dict752)
         #if "IDR2100043590-01_S27_L001" in item:
             #print(item)
         #    if "Y184" in item:
@@ -1296,14 +1300,15 @@ with open("testdomsamfixbp23ny3.csv", 'w') as t1:
                 #            print(dict4[item])
                 #            print(dict2[item])
                 #            print(dict3[item])
+                #print(dict4[item])
                 if len(list(dict1[item].split(",")))<8:
                     continue
                 if len(list(dict1[item].split(",")))>=8:
                     #print(dict4[item])
                     t1.write(dict1[item]+"\n")
-                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[4]+"\n")
-                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[4]+"\n")
-                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[0]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[4]+"\n")
+                    t1.write(item[0:item.find(",")]+",basepos,"+list(dict1[item].split(","))[2]+","+list(dict4[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict4[item].split(","))[4]+"\n")
+                    t1.write(item[0:item.find(",")]+",coverage,"+list(dict1[item].split(","))[2]+","+list(dict2[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict2[item].split(","))[4]+"\n")
+                    t1.write(item[0:item.find(",")]+",Variant frequency,"+list(dict1[item].split(","))[2]+","+list(dict3[item].split(","))[3]+","+"NA"+","+"NA"+","+"NA"+","+list(dict3[item].split(","))[4]+"\n")
                 #if "SRR8950840,DHPS,S436" in item:
                 #    print(item)
                 #    print(dict1[item])
