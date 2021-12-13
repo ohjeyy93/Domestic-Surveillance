@@ -2,7 +2,7 @@ import csv
 import os
 import re
 
-with open("domestic2019all1.csv", 'w') as t1:
+with open("domestic2019all2.csv", 'w') as t1:
     writer = csv.writer(t1)
     writer.writerow(
         [None,"dhps_reportable1","dhps_reportable2","dhps_reportable3","dhps_reportable4","dhps_reportable5",None,"dhfr_reportable1","dhfr_reportable2","dhfr_reportable3","dhfr_reportable4","dhfr_reportable5",None,"Pfcrt_reportable1","Pfcrt_reportable2","Pfcrt_reportable3","Pfcrt_reportable4","Pfcrt_reportable5","Pfcrt_reportable6","Pfcrt_reportable7","Pfcrt_reportable8","Pfcrt_reportable9","Pfcrt_reportable10","Pfcrt_reportable11","Pfcrt_reportable12","Pfcrt_reportable13","Pfcrt_reportable14","Pfcrt_reportable15","Pfcrt_reportable16","Pfcrt_reportable17",None,"MDR_reportable1","MDR_reportable2","MDR_reportable3","MDR_reportable4","MDR_reportable5", None,"cytob_reportable1", "cytob_reportable2", None,"K13_reportable1","K13_reportable2","K13_reportable3","K13_reportable4","K13_reportable5","K13_reportable6","K13_reportable7","K13_reportable8","K13_reportable1","K13_reportable9","K13_reportable10","K13_reportable11","K13_reportable12","K13_reportable13","K13_reportable14","K13_reportable15","K13_reportable16","K13_reportable17","K13_reportable18","K13_reportable19","K13_reportable20","K13_reportable21","K13_reportable22","K13_reportable23", "Country", "Submitted State"])
@@ -147,7 +147,7 @@ for item in dict5:
         #print(dict6[item])
         if item not in dict4:
             dict4[item]=item
-        if item2!="None":
+        if item2!="NA":
             if (item,item2) in dict3:
                 #print("True")
                 #print(dict3[item,dict6[item]])
@@ -172,10 +172,10 @@ for item in dict5:
                         #print(dictwd2[item,item3])
                         dict4[item]=dict4[item]+","+"WT"
                     else:
-                        dict4[item]=dict4[item]+","+"None"
+                        dict4[item]=dict4[item]+","+"NA"
                 else:
-                    dict4[item]=dict4[item]+","+"None"
-        if item2=="None":
+                    dict4[item]=dict4[item]+","+"NA"
+        if item2=="NA":
             dict4[item]=dict4[item]+","+" "
                 #print("true")
 
@@ -196,7 +196,7 @@ for item in sortednames:
     #print(dict4[item])
     #print(type(lisdict4[item]))
     #print(dict4[])
-    with open("domestic2019all1.csv", 'a') as t1:
+    with open("domestic2019all2.csv", 'a') as t1:
         writer = csv.writer(t1)
         writer.writerow(list(dict4[item].split(",")))
 

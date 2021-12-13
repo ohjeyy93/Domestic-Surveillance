@@ -1,4 +1,4 @@
-with open("domestic2019all22.csv", 'r') as t1:
+with open("CDC20SNP_INDSTATE.csv", 'r') as t1:
     count=0
     dict1={}
     Genelist1=["DHPS",'DHFR',"PfCRT", "PfMDR1", "CYTOB", "K13"]
@@ -48,11 +48,11 @@ with open("domestic2019all22.csv", 'r') as t1:
 
 #print(dict1)
 
-with open("domestic2019all1summary22.csv", 'w') as t1:
+with open("CDC20SUMTOTAL.csv", 'w') as t1:
     t1.write("Gene,SNP,Wildtype,Mutation,NA\n")
 
-with open("domestic2019all22.csv", 'r') as t1:
-    with open("domestic2019all1summary22.csv", 'a') as t2:
+with open("CDC20SNP_INDSTATE.csv", 'r') as t1:
+    with open("CDC20SUMTOTAL.csv", 'a') as t2:
         count=0
         dict2={}
         y=0

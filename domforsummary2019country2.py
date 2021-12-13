@@ -1,4 +1,4 @@
-with open("CDC21SNP_INDSTATE.csv", 'r') as t1:
+with open("domestic2019all22.csv", 'r') as t1:
     count=0
     dict1={}
     dict3={}
@@ -55,11 +55,11 @@ with open("CDC21SNP_INDSTATE.csv", 'r') as t1:
 #    if "KE" in item:
 #        print(dict3[item])
 print(dict4)
-with open("CDC21SUMCOUNTRY.csv", 'w') as t1:
+with open("domestic2019all1summary2Country22.csv", 'w') as t1:
     t1.write("Gene,SNP,wildtype,Mutation,NA,Country\n")
 
-with open("CDC21SNP_INDSTATE.csv", 'r') as t1:
-    with open("CDC21SUMCOUNTRY.csv", 'a') as t2:
+with open("domestic2019all22.csv", 'r') as t1:
+    with open("domestic2019all1summary2Country22.csv", 'a') as t2:
         count=0
         dict2={}
         y=0
